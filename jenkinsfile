@@ -5,10 +5,19 @@ pipeline {
         }
     }
     stages {
+        stage('Build') {
+            echo 'Building..'
+        }
         stage('Test') {
             steps {
-                echo 'Building..'
+                echo 'Testing..'
                 sh "sbt test"
+            }
+        }
+        stage('deploy') {
+            steps {
+                echo 'deploying..'
+                sh "sbt packageSubmission"
             }
         }
     } 
